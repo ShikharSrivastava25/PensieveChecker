@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="journal"
+            type="com.example.pensievechecker.Journal" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="5dp"
+        app:cardUseCompatPadding="true">
+
+        <!--    This is for the username of the user who created the post and the share button-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:elevation="10dp"
+            android:alpha="0.8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:padding="3dp"
+                android:text="@{journal.userName}"
+                android:id="@+id/journal_row_username"/>
+
+            <ImageButton
+                android:id="@+id/journal_row_share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_share"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <!--    This is the main layout for the post with image, title, thoughts and timestamp-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                app:imageUrl="@{journal.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:cropToPadding="true"
+                android:adjustViewBounds="true"
+                android:id="@+id/journal_image_list"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@{journal.title}"
+                android:padding="10dp"
+                android:id="@+id/journal_title_list"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/journal_thought_list"
+                android:padding="10dp"
+                android:text="@{journal.thoughts}"
+                android:textSize="18sp"
+                android:paddingTop="15dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/journal_timestamp_list"
+                android:paddingLeft="5dp"
+                android:text="@{journal.timeAdded.toString()}"
+                android:textStyle="italic"/>
+
+        </LinearLayout>
+        <!--    <include layout="@layout/toolbar" />-->
+    </androidx.cardview.widget.CardView>
+
+</layout>
+
+    <!--                android:background="@{Integer.parseInt(journal.imageUrl)}"-->
